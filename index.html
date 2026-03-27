@@ -44,12 +44,9 @@ section{padding:32px 20px}
 .info-card:last-child{margin-bottom:0}
 .info-card .ic-icon{font-size:18px;min-width:24px;text-align:center}
 
-/* Section 4 — Explore */
-.explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.explore-card{background:var(--white);border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.explore-cat{font-size:11px;font-weight:600;text-transform:uppercase;color:var(--green-light);letter-spacing:.5px;margin-bottom:4px}
-.explore-name{font-size:14px;font-weight:600;margin-bottom:2px}
-.explore-info{font-size:12px;color:var(--grey)}
+/* Section 4 — Guide */
+.cta-guide{display:block;background:var(--green-dark);color:var(--white);text-align:center;padding:16px;border-radius:12px;text-decoration:none;font-size:15px;font-weight:500;transition:background .2s}
+.cta-guide:active{background:var(--green-light)}
 
 /* Section 5 — Return */
 .warning-box{background:#fff3cd;border-left:4px solid #e67e22;border-radius:0 10px 10px 0;padding:16px;font-size:14px;line-height:1.6;margin-bottom:20px;color:#6b5900}
@@ -159,38 +156,10 @@ section{padding:32px 20px}
 <!-- Section 4 — Explorer -->
 <section id="explorer" class="bg-surface">
   <h2 class="section-title">Explorer la région</h2>
-  <div class="explore-grid">
-    <div class="explore-card">
-      <div class="explore-cat">Nature</div>
-      <div class="explore-name">Montagne Sainte-Victoire</div>
-      <div class="explore-info">25 min · Randonnée</div>
-    </div>
-    <div class="explore-card">
-      <div class="explore-cat">Ville</div>
-      <div class="explore-name">Aix-en-Provence</div>
-      <div class="explore-info">15 min · Cours Mirabeau</div>
-    </div>
-    <div class="explore-card">
-      <div class="explore-cat">Mer</div>
-      <div class="explore-name">Marseille</div>
-      <div class="explore-info">30 min · Vieux-Port</div>
-    </div>
-    <div class="explore-card">
-      <div class="explore-cat">Calanques</div>
-      <div class="explore-name">Cassis</div>
-      <div class="explore-info">40 min</div>
-    </div>
-    <div class="explore-card">
-      <div class="explore-cat">Luberon</div>
-      <div class="explore-name">Lourmarin</div>
-      <div class="explore-info">50 min · Village perché</div>
-    </div>
-    <div class="explore-card">
-      <div class="explore-cat">Nature</div>
-      <div class="explore-name">Gorges du Verdon</div>
-      <div class="explore-info">1h30 · Panoramas</div>
-    </div>
-  </div>
+  <p style="font-size:14px;color:#555;line-height:1.6;margin-bottom:16px">Nous avons préparé un guide spécialement pour vous, avec nos meilleures adresses et idées de sorties autour de Gardanne.</p>
+  <a class="cta-guide" href="https://drive.google.com/file/d/1WdRWPGhmkkZ20F9Un-gwxD2_MN9ar4WZ/view?usp=sharing" target="_blank" rel="noopener">
+    📍 Consulter le guide touristique
+  </a>
 </section>
 
 <!-- Section 5 — Retour -->
