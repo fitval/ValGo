@@ -12,9 +12,8 @@
 :root{
 --green-dark:#1B4332;--green-light:#2D6A4F;--black:#111111;
 --surface:#F5F5F0;--grey:#8E8E8E;--white:#FFFFFF;
---nav-height:52px;--header-height:auto;
 }
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-height) + 8px)}
+html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white);max-width:480px;margin:0 auto;-webkit-font-smoothing:antialiased}
 
 /* Header */
@@ -25,25 +24,12 @@ body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white);m
 .logo-text span:first-child{font-weight:300}
 .logo-text span:last-child{font-weight:600}
 .header h1{font-size:28px;font-weight:300;letter-spacing:-0.5px}
-
-/* Nav */
-.nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid #e5e5e5;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nav-inner{display:flex;gap:8px;padding:10px 16px;white-space:nowrap;width:max-content}
-.nav-pill{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:var(--black);background:var(--surface);border:none;cursor:pointer;text-decoration:none;transition:background .2s,color .2s;flex-shrink:0}
-.nav-pill.active,.nav-pill:active{background:var(--green-dark);color:var(--white)}
+.header-sub{font-size:14px;font-weight:300;opacity:.85;margin-top:12px;line-height:1.6;max-width:340px;margin-left:auto;margin-right:auto}
 
 /* Sections */
 section{padding:32px 20px}
 .section-title{font-size:20px;font-weight:600;margin-bottom:20px;letter-spacing:-0.3px}
 .bg-surface{background:var(--surface)}
-
-/* Section 1 — Steps */
-.step{display:flex;gap:14px;margin-bottom:22px}
-.step:last-child{margin-bottom:0}
-.step-num{width:32px;height:32px;min-width:32px;border-radius:50%;background:var(--green-dark);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;margin-top:2px}
-.step-content h3{font-size:15px;font-weight:600;margin-bottom:4px}
-.step-content p{font-size:14px;color:#555;line-height:1.5}
 
 /* Section 2 — Rules */
 .rule-card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 1px 3px rgba(0,0,0,.06)}
@@ -86,6 +72,10 @@ section{padding:32px 20px}
 .contact-sub{font-size:13px;color:#555;line-height:1.6;margin-bottom:10px}
 .contact-assist{font-size:13px;color:var(--grey);line-height:1.6}
 .contact-assist a{color:var(--green-dark);text-decoration:none;font-weight:500}
+.accident-steps{display:flex;align-items:center;gap:0;margin-top:12px;flex-wrap:nowrap}
+.accident-step{display:flex;align-items:center;gap:6px;font-size:12px;color:#555;white-space:nowrap}
+.accident-step .as-icon{font-size:16px}
+.accident-arrow{color:#ccc;font-size:14px;margin:0 4px;flex-shrink:0}
 
 .review-block{background:var(--green-dark);border-radius:14px;padding:28px 20px;text-align:center;color:var(--white)}
 .review-block h3{font-size:17px;font-weight:600;margin-bottom:8px}
@@ -110,89 +100,45 @@ section{padding:32px 20px}
     <span class="logo-text"><span>Val</span><span>Go</span></span>
   </div>
   <h1>Bienvenue à bord</h1>
+  <p class="header-sub">Merci d'avoir choisi mon véhicule pour votre voyage. Sur cette page, vous retrouverez tout ce dont vous aurez besoin concernant le véhicule, en plus de ce qui est déjà disponible sur l'application de location.</p>
 </header>
-
-<!-- Nav -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a class="nav-pill active" href="#demarrage">Démarrage</a>
-    <a class="nav-pill" href="#regles">Règles</a>
-    <a class="nav-pill" href="#stationnement">Stationnement</a>
-    <a class="nav-pill" href="#explorer">Explorer</a>
-    <a class="nav-pill" href="#retour">Retour</a>
-    <a class="nav-pill" href="#contact">Contact</a>
-  </div>
-</nav>
-
-<!-- Section 1 — Démarrage -->
-<section id="demarrage">
-  <h2 class="section-title">Démarrage</h2>
-  <div class="step">
-    <div class="step-num">1</div>
-    <div class="step-content">
-      <h3>Ouvre l'app Getaround</h3>
-      <p>"Mes réservations" → sélectionne ce véhicule.</p>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num">2</div>
-    <div class="step-content">
-      <h3>Déverrouille le véhicule</h3>
-      <p>Appuie sur "Ouvrir" dans l'app. Le boîtier Connect déverrouille automatiquement.</p>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num">3</div>
-    <div class="step-content">
-      <h3>Démarre et roule</h3>
-      <p>La clé est dans la boîte à gant. Démarre et roule.</p>
-    </div>
-  </div>
-  <div class="step">
-    <div class="step-num">4</div>
-    <div class="step-content">
-      <h3>Documents & sécurité</h3>
-      <p>Copie carte grise dans la boîte à gant. Triangle et gilet de sécurité dans le coffre.</p>
-    </div>
-  </div>
-</section>
 
 <!-- Section 2 — Règles -->
 <section id="regles" class="bg-surface">
   <h2 class="section-title">Règles importantes</h2>
   <div class="rule-card">
-    <div class="rule-icon">🚫</div>
+    <div class="rule-icon">⛽</div>
     <div class="rule-text">
       <h3>Carburant</h3>
-      <p>Essence uniquement. Restituer avec le même niveau qu'au départ.</p>
+      <p>Le véhicule fonctionne exclusivement à l'essence. Merci de le restituer avec le même niveau de carburant qu'à votre prise en charge.</p>
     </div>
   </div>
   <div class="rule-card">
     <div class="rule-icon">🚬</div>
     <div class="rule-text">
       <h3>Interdiction de fumer</h3>
-      <p>Strictement interdit à l'intérieur du véhicule.</p>
+      <p>Pour le confort de tous, nous vous remercions de ne pas fumer à l'intérieur du véhicule.</p>
     </div>
   </div>
   <div class="rule-card">
     <div class="rule-icon">🐾</div>
     <div class="rule-text">
       <h3>Animaux</h3>
-      <p>Acceptés uniquement avec protection (tapis, housse).</p>
+      <p>Vos compagnons à quatre pattes sont les bienvenus, à condition de prévoir une protection adaptée (tapis, housse de siège).</p>
     </div>
   </div>
   <div class="rule-card">
     <div class="rule-icon">⚠️</div>
     <div class="rule-text">
       <h3>Stationnement</h3>
-      <p>Le véhicule doit être garé obligatoirement sur une place gratuite.</p>
+      <p>Merci de garer obligatoirement le véhicule sur une place gratuite.</p>
     </div>
   </div>
   <div class="rule-card">
     <div class="rule-icon">🧹</div>
     <div class="rule-text">
       <h3>Propreté</h3>
-      <p>Rendre le véhicule aussi propre que vous l'avez trouvé (intérieur + extérieur). Un chiffon et nettoyant sont disponibles dans la portière côté passager. En cas de retour non nettoyé, des frais jusqu'à 70€ seront facturés.</p>
+      <p>Nous vous demandons de restituer le véhicule dans le même état de propreté qu'à votre arrivée (intérieur et extérieur). Un chiffon et un nettoyant sont à votre disposition dans la portière côté passager. En cas de retour non nettoyé, des frais jusqu'à 70€ pourront être facturés.</p>
     </div>
   </div>
 </section>
@@ -299,7 +245,15 @@ section{padding:32px 20px}
     <p class="contact-sub">Je réponds rapidement. Ne génère pas de sinistre dans l'app sans m'avoir appelé d'abord.</p>
     <div class="contact-assist">
       <p>Getaround Assistance : <a href="tel:0176350391">01 76 35 03 91</a></p>
-      <p style="margin-top:8px">Accident → Sécuriser les passagers → appeler secours → ouvrir dossier sinistre dans l'app</p>
+      <div class="accident-steps">
+        <span class="accident-step"><span class="as-icon">🚨</span> Accident</span>
+        <span class="accident-arrow">›</span>
+        <span class="accident-step"><span class="as-icon">🛡️</span> Sécuriser</span>
+        <span class="accident-arrow">›</span>
+        <span class="accident-step"><span class="as-icon">📞</span> Secours</span>
+        <span class="accident-arrow">›</span>
+        <span class="accident-step"><span class="as-icon">📋</span> Sinistre app</span>
+      </div>
     </div>
   </div>
 
@@ -323,31 +277,6 @@ section{padding:32px 20px}
   <a href="tel:0650866057">06 50 86 60 57</a>
 </footer>
 
-<script>
-// Active nav pill on scroll
-const sections = document.querySelectorAll('section[id]');
-const pills = document.querySelectorAll('.nav-pill');
-const nav = document.getElementById('nav');
-
-function updateActive() {
-  const scrollY = window.scrollY + nav.offsetHeight + 20;
-  let current = '';
-  sections.forEach(s => {
-    if (scrollY >= s.offsetTop) current = s.id;
-  });
-  pills.forEach(p => {
-    p.classList.toggle('active', p.getAttribute('href') === '#' + current);
-  });
-}
-window.addEventListener('scroll', updateActive, {passive: true});
-
-// Scroll active pill into view
-pills.forEach(p => {
-  p.addEventListener('click', () => {
-    setTimeout(() => p.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}), 100);
-  });
-});
-</script>
 
 </body>
 </html>
