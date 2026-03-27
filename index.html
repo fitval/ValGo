@@ -72,10 +72,9 @@ section{padding:32px 20px}
 .contact-sub{font-size:13px;color:#555;line-height:1.6;margin-bottom:10px}
 .contact-assist{font-size:13px;color:var(--grey);line-height:1.6}
 .contact-assist a{color:var(--green-dark);text-decoration:none;font-weight:500}
-.accident-steps{display:flex;align-items:center;gap:0;margin-top:12px;flex-wrap:nowrap}
-.accident-step{display:flex;align-items:center;gap:6px;font-size:12px;color:#555;white-space:nowrap}
-.accident-step .as-icon{font-size:16px}
-.accident-arrow{color:#ccc;font-size:14px;margin:0 4px;flex-shrink:0}
+.accident-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.accident-step{background:var(--surface);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--black)}
+.accident-step .as-num{width:18px;height:18px;min-width:18px;border-radius:50%;background:var(--green-dark);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600}
 
 .review-block{background:var(--green-dark);border-radius:14px;padding:28px 20px;text-align:center;color:var(--white)}
 .review-block h3{font-size:17px;font-weight:600;margin-bottom:8px}
@@ -246,13 +245,10 @@ section{padding:32px 20px}
     <div class="contact-assist">
       <p>Getaround Assistance : <a href="tel:0176350391">01 76 35 03 91</a></p>
       <div class="accident-steps">
-        <span class="accident-step"><span class="as-icon">🚨</span> Accident</span>
-        <span class="accident-arrow">›</span>
-        <span class="accident-step"><span class="as-icon">🛡️</span> Sécuriser</span>
-        <span class="accident-arrow">›</span>
-        <span class="accident-step"><span class="as-icon">📞</span> Secours</span>
-        <span class="accident-arrow">›</span>
-        <span class="accident-step"><span class="as-icon">📋</span> Sinistre app</span>
+        <div class="accident-step"><span class="as-num">1</span> Sécuriser les passagers</div>
+        <div class="accident-step"><span class="as-num">2</span> Appeler les secours</div>
+        <div class="accident-step"><span class="as-num">3</span> Me prévenir</div>
+        <div class="accident-step"><span class="as-num">4</span> Ouvrir sinistre dans l'app</div>
       </div>
     </div>
   </div>
