@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ValGo — Bienvenue à bord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--green-dark:#1B4332;--green-light:#2D6A4F;--black:#111111;
+--surface:#F5F5F0;--grey:#8E8E8E;--white:#FFFFFF;
+--nav-height:52px;--header-height:auto;
+}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-height) + 8px)}
+body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white);max-width:480px;margin:0 auto;-webkit-font-smoothing:antialiased}
+
+/* Header */
+.header{background:var(--green-dark);color:var(--white);padding:28px 20px 24px;text-align:center}
+.logo{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px}
+.logo-icon{width:32px;height:32px}
+.logo-text{font-size:22px;letter-spacing:-0.5px}
+.logo-text span:first-child{font-weight:300}
+.logo-text span:last-child{font-weight:600}
+.header h1{font-size:28px;font-weight:300;letter-spacing:-0.5px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid #e5e5e5;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-inner{display:flex;gap:8px;padding:10px 16px;white-space:nowrap;width:max-content}
+.nav-pill{padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;color:var(--black);background:var(--surface);border:none;cursor:pointer;text-decoration:none;transition:background .2s,color .2s;flex-shrink:0}
+.nav-pill.active,.nav-pill:active{background:var(--green-dark);color:var(--white)}
+
+/* Sections */
+section{padding:32px 20px}
+.section-title{font-size:20px;font-weight:600;margin-bottom:20px;letter-spacing:-0.3px}
+.bg-surface{background:var(--surface)}
+
+/* Section 1 — Steps */
+.step{display:flex;gap:14px;margin-bottom:22px}
+.step:last-child{margin-bottom:0}
+.step-num{width:32px;height:32px;min-width:32px;border-radius:50%;background:var(--green-dark);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;margin-top:2px}
+.step-content h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.step-content p{font-size:14px;color:#555;line-height:1.5}
+
+/* Section 2 — Rules */
+.rule-card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.rule-card:last-child{margin-bottom:0}
+.rule-icon{font-size:22px;min-width:28px;text-align:center;line-height:1.4}
+.rule-text h3{font-size:14px;font-weight:600;margin-bottom:2px}
+.rule-text p{font-size:13px;color:#555;line-height:1.5}
+
+/* Section 3 — Map */
+.map-frame{width:100%;height:180px;border:0;border-radius:12px;margin-bottom:14px}
+.info-card{background:var(--white);border-radius:10px;padding:14px 16px;margin-bottom:10px;font-size:14px;line-height:1.5;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;align-items:center;gap:10px}
+.info-card:last-child{margin-bottom:0}
+.info-card .ic-icon{font-size:18px;min-width:24px;text-align:center}
+
+/* Section 4 — Explore */
+.explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.explore-card{background:var(--white);border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.explore-cat{font-size:11px;font-weight:600;text-transform:uppercase;color:var(--green-light);letter-spacing:.5px;margin-bottom:4px}
+.explore-name{font-size:14px;font-weight:600;margin-bottom:2px}
+.explore-info{font-size:12px;color:var(--grey)}
+
+/* Section 5 — Return */
+.warning-box{background:#fff3cd;border-left:4px solid #e67e22;border-radius:0 10px 10px 0;padding:16px;font-size:14px;line-height:1.6;margin-bottom:20px;color:#6b5900}
+.checklist{list-style:none}
+.checklist li{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #eee;font-size:14px;line-height:1.5;cursor:pointer;-webkit-user-select:none;user-select:none}
+.checklist li:last-child{border-bottom:none}
+.check-box{width:22px;height:22px;min-width:22px;border-radius:6px;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px}
+.checklist li.checked .check-box{background:var(--green-dark);border-color:var(--green-dark)}
+.checklist li.checked .check-box svg{opacity:1}
+.checklist li.checked .check-label{text-decoration:line-through;color:var(--grey)}
+.check-box svg{width:14px;height:14px;opacity:0;transition:opacity .2s}
+.check-label{transition:color .2s}
+
+/* Section 6 — Contact */
+.contact-block{background:var(--white);border-radius:14px;padding:24px 20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.contact-block h3{font-size:17px;font-weight:600;margin-bottom:14px}
+.cta-call{display:block;background:var(--green-dark);color:var(--white);text-align:center;padding:16px;border-radius:12px;text-decoration:none;font-size:15px;font-weight:500;margin-bottom:12px;transition:background .2s}
+.cta-call:active{background:var(--green-light)}
+.cta-call small{display:block;font-size:13px;font-weight:400;opacity:.85;margin-top:4px}
+.contact-sub{font-size:13px;color:#555;line-height:1.6;margin-bottom:10px}
+.contact-assist{font-size:13px;color:var(--grey);line-height:1.6}
+.contact-assist a{color:var(--green-dark);text-decoration:none;font-weight:500}
+
+.review-block{background:var(--green-dark);border-radius:14px;padding:28px 20px;text-align:center;color:var(--white)}
+.review-block h3{font-size:17px;font-weight:600;margin-bottom:8px}
+.stars{display:flex;justify-content:center;gap:4px;margin-bottom:12px}
+.stars svg{width:28px;height:28px}
+.review-block p{font-size:14px;opacity:.9;margin-bottom:16px;line-height:1.5}
+.btn-review{display:inline-block;background:var(--white);color:var(--green-dark);padding:12px 28px;border-radius:10px;text-decoration:none;font-size:14px;font-weight:600;transition:opacity .2s}
+.btn-review:active{opacity:.85}
+
+/* Footer */
+.footer{background:var(--black);color:var(--white);text-align:center;padding:28px 20px}
+.footer p{font-size:14px;opacity:.7;margin-bottom:6px}
+.footer a{color:var(--white);text-decoration:none;font-size:14px;opacity:.7}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="7" fill="#fff"/><path d="M16 22V10m0 0l-5 5m5-5l5 5" stroke="#1B4332" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="logo-text"><span>Val</span><span>Go</span></span>
+  </div>
+  <h1>Bienvenue à bord</h1>
+</header>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-pill active" href="#demarrage">Démarrage</a>
+    <a class="nav-pill" href="#regles">Règles</a>
+    <a class="nav-pill" href="#stationnement">Stationnement</a>
+    <a class="nav-pill" href="#explorer">Explorer</a>
+    <a class="nav-pill" href="#retour">Retour</a>
+    <a class="nav-pill" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Section 1 — Démarrage -->
+<section id="demarrage">
+  <h2 class="section-title">Démarrage</h2>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h3>Ouvre l'app Getaround</h3>
+      <p>"Mes réservations" → sélectionne ce véhicule.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h3>Déverrouille le véhicule</h3>
+      <p>Appuie sur "Ouvrir" dans l'app. Le boîtier Connect déverrouille automatiquement.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h3>Démarre et roule</h3>
+      <p>La clé est dans la boîte à gant. Démarre et roule.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h3>Documents & sécurité</h3>
+      <p>Copie carte grise dans la boîte à gant. Triangle et gilet de sécurité dans le coffre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2 — Règles -->
+<section id="regles" class="bg-surface">
+  <h2 class="section-title">Règles importantes</h2>
+  <div class="rule-card">
+    <div class="rule-icon">🚫</div>
+    <div class="rule-text">
+      <h3>Carburant</h3>
+      <p>Essence uniquement. Restituer avec le même niveau qu'au départ.</p>
+    </div>
+  </div>
+  <div class="rule-card">
+    <div class="rule-icon">🚬</div>
+    <div class="rule-text">
+      <h3>Interdiction de fumer</h3>
+      <p>Strictement interdit à l'intérieur du véhicule.</p>
+    </div>
+  </div>
+  <div class="rule-card">
+    <div class="rule-icon">🐾</div>
+    <div class="rule-text">
+      <h3>Animaux</h3>
+      <p>Acceptés uniquement avec protection (tapis, housse).</p>
+    </div>
+  </div>
+  <div class="rule-card">
+    <div class="rule-icon">⚠️</div>
+    <div class="rule-text">
+      <h3>Stationnement</h3>
+      <p>Le véhicule doit être garé obligatoirement sur une place gratuite.</p>
+    </div>
+  </div>
+  <div class="rule-card">
+    <div class="rule-icon">🧹</div>
+    <div class="rule-text">
+      <h3>Propreté</h3>
+      <p>Rendre le véhicule aussi propre que vous l'avez trouvé (intérieur + extérieur). Un chiffon et nettoyant sont disponibles dans la portière côté passager. En cas de retour non nettoyé, des frais jusqu'à 70€ seront facturés.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 — Stationnement -->
+<section id="stationnement">
+  <h2 class="section-title">Stationnement</h2>
+  <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.5!2d5.4714!3d43.4545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c9c1234567890%3A0x0!2sGare+de+Gardanne!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div class="info-card">
+    <span class="ic-icon">📍</span>
+    <span>Parking gare de Gardanne — gratuit · à 50m de la sortie</span>
+  </div>
+  <div class="info-card">
+    <span class="ic-icon">🅿️</span>
+    <span>Disque zone bleue disponible dans la boîte à gant</span>
+  </div>
+</section>
+
+<!-- Section 4 — Explorer -->
+<section id="explorer" class="bg-surface">
+  <h2 class="section-title">Explorer la région</h2>
+  <div class="explore-grid">
+    <div class="explore-card">
+      <div class="explore-cat">Nature</div>
+      <div class="explore-name">Montagne Sainte-Victoire</div>
+      <div class="explore-info">25 min · Randonnée</div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-cat">Ville</div>
+      <div class="explore-name">Aix-en-Provence</div>
+      <div class="explore-info">15 min · Cours Mirabeau</div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-cat">Mer</div>
+      <div class="explore-name">Marseille</div>
+      <div class="explore-info">30 min · Vieux-Port</div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-cat">Calanques</div>
+      <div class="explore-name">Cassis</div>
+      <div class="explore-info">40 min</div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-cat">Luberon</div>
+      <div class="explore-name">Lourmarin</div>
+      <div class="explore-info">50 min · Village perché</div>
+    </div>
+    <div class="explore-card">
+      <div class="explore-cat">Nature</div>
+      <div class="explore-name">Gorges du Verdon</div>
+      <div class="explore-info">1h30 · Panoramas</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 5 — Retour -->
+<section id="retour">
+  <h2 class="section-title">Avant de rendre le véhicule</h2>
+  <div class="warning-box">
+    La voiture doit être stationnée obligatoirement sur une place gratuite. Merci de la restituer avec le plein d'essence et propre. En cas de retour non nettoyé, des frais jusqu'à 70€ seront facturés.
+  </div>
+  <ul class="checklist" id="checklist">
+    <li onclick="this.classList.toggle('checked')">
+      <div class="check-box"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Carburant au même niveau qu'au départ (essence)</span>
+    </li>
+    <li onclick="this.classList.toggle('checked')">
+      <div class="check-box"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Intérieur propre — chiffon & nettoyant dans portière passager</span>
+    </li>
+    <li onclick="this.classList.toggle('checked')">
+      <div class="check-box"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Extérieur sans déchets visibles</span>
+    </li>
+    <li onclick="this.classList.toggle('checked')">
+      <div class="check-box"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Clé remise dans la boîte à gant</span>
+    </li>
+    <li onclick="this.classList.toggle('checked')">
+      <div class="check-box"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Véhicule garé sur une place gratuite</span>
+    </li>
+    <li onclick="this.classList.toggle('checked')">
+      <div class="check-box"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Signaler tout dommage via l'application</span>
+    </li>
+    <li onclick="this.classList.toggle('checked')">
+      <div class="check-box"><svg viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <span class="check-label">Fin de location clôturée dans l'app Getaround</span>
+    </li>
+  </ul>
+</section>
+
+<!-- Section 6 — Contact -->
+<section id="contact" class="bg-surface">
+  <h2 class="section-title">Contact & Urgences</h2>
+
+  <div class="contact-block">
+    <h3>Un problème ?</h3>
+    <a class="cta-call" href="tel:0650866057">
+      Appelle-moi directement
+      <small>06 50 86 60 57</small>
+    </a>
+    <p class="contact-sub">Je réponds rapidement. Ne génère pas de sinistre dans l'app sans m'avoir appelé d'abord.</p>
+    <div class="contact-assist">
+      <p>Getaround Assistance : <a href="tel:0176350391">01 76 35 03 91</a></p>
+      <p style="margin-top:8px">Accident → Sécuriser les passagers → appeler secours → ouvrir dossier sinistre dans l'app</p>
+    </div>
+  </div>
+
+  <div class="review-block">
+    <h3>Tu es satisfait ?</h3>
+    <div class="stars">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" fill="#FFD700"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" fill="#FFD700"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" fill="#FFD700"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" fill="#FFD700"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" fill="#FFD700"/></svg>
+    </div>
+    <p>Laisse-nous 5 étoiles sur Getaround — ça nous aide énormément !</p>
+    <a class="btn-review" href="https://getaround.com" target="_blank" rel="noopener">Laisser un avis</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>ValGo · Merci et bonne route 🙏</p>
+  <a href="tel:0650866057">06 50 86 60 57</a>
+</footer>
+
+<script>
+// Active nav pill on scroll
+const sections = document.querySelectorAll('section[id]');
+const pills = document.querySelectorAll('.nav-pill');
+const nav = document.getElementById('nav');
+
+function updateActive() {
+  const scrollY = window.scrollY + nav.offsetHeight + 20;
+  let current = '';
+  sections.forEach(s => {
+    if (scrollY >= s.offsetTop) current = s.id;
+  });
+  pills.forEach(p => {
+    p.classList.toggle('active', p.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActive, {passive: true});
+
+// Scroll active pill into view
+pills.forEach(p => {
+  p.addEventListener('click', () => {
+    setTimeout(() => p.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}), 100);
+  });
+});
+</script>
+
+</body>
+</html>
